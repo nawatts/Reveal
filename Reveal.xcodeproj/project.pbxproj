@@ -1,0 +1,292 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		536186EE1523B694000343E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186ED1523B694000343E6 /* UIKit.framework */; };
+		536186F01523B694000343E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186EF1523B694000343E6 /* Foundation.framework */; };
+		536186F21523B694000343E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186F11523B694000343E6 /* CoreGraphics.framework */; };
+		536186F81523B694000343E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 536186F61523B694000343E6 /* InfoPlist.strings */; };
+		536186FA1523B694000343E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 536186F91523B694000343E6 /* main.m */; };
+		536186FE1523B694000343E6 /* RVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 536186FD1523B694000343E6 /* RVAppDelegate.m */; };
+		536187131523C1DD000343E6 /* RVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 536187111523C1DD000343E6 /* RVMainViewController.m */; };
+		536187141523C1DD000343E6 /* RVMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536187121523C1DD000343E6 /* RVMainViewController.xib */; };
+		536187161523C39B000343E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536187151523C39B000343E6 /* CoreLocation.framework */; };
+		536187191523C531000343E6 /* RVLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 536187181523C531000343E6 /* RVLocationManager.m */; };
+		537D86D0152526670040A138 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D86CF152526670040A138 /* MapKit.framework */; };
+		537D86D615252A5B0040A138 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D86D515252A5B0040A138 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		536186E91523B694000343E6 /* Reveal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reveal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		536186ED1523B694000343E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		536186EF1523B694000343E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		536186F11523B694000343E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		536186F51523B694000343E6 /* Reveal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reveal-Info.plist"; sourceTree = "<group>"; };
+		536186F71523B694000343E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		536186F91523B694000343E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		536186FB1523B694000343E6 /* Reveal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reveal-Prefix.pch"; sourceTree = "<group>"; };
+		536186FC1523B694000343E6 /* RVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RVAppDelegate.h; sourceTree = "<group>"; };
+		536186FD1523B694000343E6 /* RVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVAppDelegate.m; sourceTree = "<group>"; };
+		536187101523C1DD000343E6 /* RVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVMainViewController.h; sourceTree = "<group>"; };
+		536187111523C1DD000343E6 /* RVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVMainViewController.m; sourceTree = "<group>"; };
+		536187121523C1DD000343E6 /* RVMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RVMainViewController.xib; sourceTree = "<group>"; };
+		536187151523C39B000343E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		536187171523C531000343E6 /* RVLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVLocationManager.h; sourceTree = "<group>"; };
+		536187181523C531000343E6 /* RVLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVLocationManager.m; sourceTree = "<group>"; };
+		537D86CF152526670040A138 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		537D86D515252A5B0040A138 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		536186E61523B694000343E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				537D86D615252A5B0040A138 /* QuartzCore.framework in Frameworks */,
+				537D86D0152526670040A138 /* MapKit.framework in Frameworks */,
+				536187161523C39B000343E6 /* CoreLocation.framework in Frameworks */,
+				536186EE1523B694000343E6 /* UIKit.framework in Frameworks */,
+				536186F01523B694000343E6 /* Foundation.framework in Frameworks */,
+				536186F21523B694000343E6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		536186DE1523B694000343E6 = {
+			isa = PBXGroup;
+			children = (
+				536186F31523B694000343E6 /* Reveal */,
+				536186EC1523B694000343E6 /* Frameworks */,
+				536186EA1523B694000343E6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		536186EA1523B694000343E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				536186E91523B694000343E6 /* Reveal.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		536186EC1523B694000343E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				537D86D515252A5B0040A138 /* QuartzCore.framework */,
+				537D86CF152526670040A138 /* MapKit.framework */,
+				536187151523C39B000343E6 /* CoreLocation.framework */,
+				536186ED1523B694000343E6 /* UIKit.framework */,
+				536186EF1523B694000343E6 /* Foundation.framework */,
+				536186F11523B694000343E6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		536186F31523B694000343E6 /* Reveal */ = {
+			isa = PBXGroup;
+			children = (
+				536186FC1523B694000343E6 /* RVAppDelegate.h */,
+				536186FD1523B694000343E6 /* RVAppDelegate.m */,
+				536187171523C531000343E6 /* RVLocationManager.h */,
+				536187181523C531000343E6 /* RVLocationManager.m */,
+				536187101523C1DD000343E6 /* RVMainViewController.h */,
+				536187111523C1DD000343E6 /* RVMainViewController.m */,
+				536187121523C1DD000343E6 /* RVMainViewController.xib */,
+				536186F41523B694000343E6 /* Supporting Files */,
+			);
+			path = Reveal;
+			sourceTree = "<group>";
+		};
+		536186F41523B694000343E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				536186F51523B694000343E6 /* Reveal-Info.plist */,
+				536186F61523B694000343E6 /* InfoPlist.strings */,
+				536186F91523B694000343E6 /* main.m */,
+				536186FB1523B694000343E6 /* Reveal-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		536186E81523B694000343E6 /* Reveal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 536187011523B694000343E6 /* Build configuration list for PBXNativeTarget "Reveal" */;
+			buildPhases = (
+				536186E51523B694000343E6 /* Sources */,
+				536186E61523B694000343E6 /* Frameworks */,
+				536186E71523B694000343E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Reveal;
+			productName = Reveal;
+			productReference = 536186E91523B694000343E6 /* Reveal.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		536186E01523B694000343E6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RV;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "";
+			};
+			buildConfigurationList = 536186E31523B694000343E6 /* Build configuration list for PBXProject "Reveal" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 536186DE1523B694000343E6;
+			productRefGroup = 536186EA1523B694000343E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				536186E81523B694000343E6 /* Reveal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		536186E71523B694000343E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				536186F81523B694000343E6 /* InfoPlist.strings in Resources */,
+				536187141523C1DD000343E6 /* RVMainViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		536186E51523B694000343E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				536186FA1523B694000343E6 /* main.m in Sources */,
+				536186FE1523B694000343E6 /* RVAppDelegate.m in Sources */,
+				536187131523C1DD000343E6 /* RVMainViewController.m in Sources */,
+				536187191523C531000343E6 /* RVLocationManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		536186F61523B694000343E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				536186F71523B694000343E6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		536186FF1523B694000343E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		536187001523B694000343E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		536187021523B694000343E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reveal/Reveal-Prefix.pch";
+				INFOPLIST_FILE = "Reveal/Reveal-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		536187031523B694000343E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reveal/Reveal-Prefix.pch";
+				INFOPLIST_FILE = "Reveal/Reveal-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		536186E31523B694000343E6 /* Build configuration list for PBXProject "Reveal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536186FF1523B694000343E6 /* Debug */,
+				536187001523B694000343E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		536187011523B694000343E6 /* Build configuration list for PBXNativeTarget "Reveal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536187021523B694000343E6 /* Debug */,
+				536187031523B694000343E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 536186E01523B694000343E6 /* Project object */;
+}
