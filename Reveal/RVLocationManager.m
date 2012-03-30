@@ -31,6 +31,8 @@
 {
   self = [super init];
   if ( self ) {
+    [CLLocationManager locationServicesEnabled];
+    
     self.location_manager = [[CLLocationManager alloc] init];
     self.location_manager.delegate = self;
     
