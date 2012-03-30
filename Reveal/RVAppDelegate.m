@@ -37,7 +37,7 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [application setStatusBarHidden:YES];
   
-  self.main_view_controller = [[RVMainViewController alloc] initWithNibName:@"RVMainViewController" bundle:[NSBundle mainBundle]];
+  self.main_view_controller = [[RVMainViewController alloc] init];
   self.window.rootViewController = self.main_view_controller;
   [self.window makeKeyAndVisible];
   

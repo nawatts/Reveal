@@ -14,7 +14,6 @@
 		536186FA1523B694000343E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 536186F91523B694000343E6 /* main.m */; };
 		536186FE1523B694000343E6 /* RVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 536186FD1523B694000343E6 /* RVAppDelegate.m */; };
 		536187131523C1DD000343E6 /* RVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 536187111523C1DD000343E6 /* RVMainViewController.m */; };
-		536187141523C1DD000343E6 /* RVMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536187121523C1DD000343E6 /* RVMainViewController.xib */; };
 		536187161523C39B000343E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536187151523C39B000343E6 /* CoreLocation.framework */; };
 		536187191523C531000343E6 /* RVLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 536187181523C531000343E6 /* RVLocationManager.m */; };
 		537D86D0152526670040A138 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D86CF152526670040A138 /* MapKit.framework */; };
@@ -34,7 +33,6 @@
 		536186FD1523B694000343E6 /* RVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVAppDelegate.m; sourceTree = "<group>"; };
 		536187101523C1DD000343E6 /* RVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVMainViewController.h; sourceTree = "<group>"; };
 		536187111523C1DD000343E6 /* RVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVMainViewController.m; sourceTree = "<group>"; };
-		536187121523C1DD000343E6 /* RVMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RVMainViewController.xib; sourceTree = "<group>"; };
 		536187151523C39B000343E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		536187171523C531000343E6 /* RVLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVLocationManager.h; sourceTree = "<group>"; };
 		536187181523C531000343E6 /* RVLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVLocationManager.m; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				536187181523C531000343E6 /* RVLocationManager.m */,
 				536187101523C1DD000343E6 /* RVMainViewController.h */,
 				536187111523C1DD000343E6 /* RVMainViewController.m */,
-				536187121523C1DD000343E6 /* RVMainViewController.xib */,
 				536186F41523B694000343E6 /* Supporting Files */,
 			);
 			path = Reveal;
@@ -168,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				536186F81523B694000343E6 /* InfoPlist.strings in Resources */,
-				536187141523C1DD000343E6 /* RVMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
