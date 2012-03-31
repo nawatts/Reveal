@@ -8,9 +8,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface RVLocationManager : NSObject <CLLocationManagerDelegate>
+@interface RVLocationManager : NSObject <CLLocationManagerDelegate, UIAccelerometerDelegate>
 
 @property (assign, nonatomic, readonly) CLLocationCoordinate2D current_location;
 @property (assign, nonatomic, readonly) CLLocationDirection current_heading;
+@property (assign, nonatomic, readonly) double current_pitch;
 
 @end

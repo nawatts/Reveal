@@ -10,6 +10,7 @@
 
 @interface RVLocationManager()
 @property (strong, nonatomic) CLLocationManager* location_manager;
+@property (strong, nonatomic) UIAccelerometer* accelerometer;
 @end
 
 @implementation RVLocationManager
@@ -17,6 +18,8 @@
 @synthesize location_manager = _location_manager;
 @synthesize current_location = _current_location;
 @synthesize current_heading = _current_heading;
+@synthesize accelerometer = _accelerometer;
+@synthesize current_pitch = _current_pitch;
 
 - (void)dealloc
 {
@@ -24,6 +27,7 @@
   [_location_manager stopUpdatingHeading];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
   _location_manager = nil;
+  _accelerometer = nil;
   [super dealloc];
 }
 
@@ -44,6 +48,10 @@
     
     [self.location_manager startUpdatingLocation];
     [self.location_manager startUpdatingHeading];
+    
+    self.accelerometer = [UIAccelerometer sharedAccelerometer];
+    self.accelerometer.delegate = self;
+    self.accelerometer.updateInterval = 0.2;
   }
   
   return self;
@@ -84,6 +92,34 @@
 - (void)deviceOrientationDidChange:(NSNotification*)notification
 {
   self.location_manager.headingOrientation = ((UIDevice*) notification.object).orientation;
+}
+
+#pragma mark - UIAccelerometerDelegate
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+  switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+    case UIInterfaceOrientationPortrait:
+      _current_pitch = atan2(-acceleration.y, acceleration.z)-M_PI_2;
+      break;
+    case UIInterfaceOrientationPortraitUpsideDown:  
+      _current_pitch = atan2(acceleration.y, acceleration.z)-M_PI_2;
+      break;
+    case UIInterfaceOrientationLandscapeLeft:
+      _current_pitch = atan2(acceleration.x, acceleration.z)-M_PI_2;
+      break;
+    case UIInterfaceOrientationLandscapeRight:
+      _current_pitch = atan2(-acceleration.x, acceleration.z)-M_PI_2;
+      break;
+  }
+  
+  // Map to range -pi to pi
+  if (_current_pitch > M_PI)
+    _current_pitch -= 2 * M_PI;
+  else if (_current_pitch < -M_PI)
+    _current_pitch += 2 * M_PI;
+  
+  NSLog(@"RVLocationManager : Pitch = %.02lf", self.current_pitch * 180.0 / M_PI);
 }
 
 @end
