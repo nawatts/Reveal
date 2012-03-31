@@ -13,11 +13,13 @@
 
 @synthesize compass_display = _compass_display;
 @synthesize map_display = _map_display;
+@synthesize camera_display = _camera_display;
 
 - (void)dealloc
 {
-  self.compass_display = nil;
-  self.map_display = nil;
+  _compass_display = nil;
+  _map_display = nil;
+  _camera_display = nil;
   
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LocationUpdated" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"HeadingUpdated" object:nil];
@@ -31,6 +33,9 @@
   if (self) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedLocation:) name:@"LocationUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedHeading:) name:@"HeadingUpdated" object:nil];
+    
+    self.camera_display = [[RVCameraView alloc] initWithFrame:self.bounds];
+    [self addSubview:self.camera_display];
     
     self.compass_display = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"---.-"]];
     [self.compass_display setSegmentedControlStyle:UISegmentedControlStyleBar];
@@ -54,9 +59,9 @@
 
 - (void)layoutSubviews
 {  
-  CGSize frame_size = self.bounds.size;
-  self.map_display.frame = CGRectMake(8, frame_size.height-8-90, 90, 90);
-  self.compass_display.frame = CGRectMake(frame_size.width-8-67, frame_size.height-8-30, 67, 30);
+  [super layoutSubviews];
+  self.map_display.frame = CGRectMake(8,self.bounds.size.height-8-90, 90, 90);
+  self.compass_display.frame = CGRectMake(self.bounds.size.width-8-67, self.bounds.size.height-8-30, 67, 30);
 }
 
 #pragma mark - Notification Observers

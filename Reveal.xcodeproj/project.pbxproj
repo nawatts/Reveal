@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5339EC3615266AE40022AC65 /* RVCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339EC3515266AE40022AC65 /* RVCameraView.m */; };
+		5339EC3915266B1D0022AC65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5339EC3815266B1D0022AC65 /* AVFoundation.framework */; };
 		536186EE1523B694000343E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186ED1523B694000343E6 /* UIKit.framework */; };
 		536186F01523B694000343E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186EF1523B694000343E6 /* Foundation.framework */; };
 		536186F21523B694000343E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186F11523B694000343E6 /* CoreGraphics.framework */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5339EC3415266AE40022AC65 /* RVCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVCameraView.h; sourceTree = "<group>"; };
+		5339EC3515266AE40022AC65 /* RVCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVCameraView.m; sourceTree = "<group>"; };
+		5339EC3815266B1D0022AC65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		536186E91523B694000343E6 /* Reveal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reveal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		536186ED1523B694000343E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		536186EF1523B694000343E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5339EC3915266B1D0022AC65 /* AVFoundation.framework in Frameworks */,
 				537D86D615252A5B0040A138 /* QuartzCore.framework in Frameworks */,
 				537D86D0152526670040A138 /* MapKit.framework in Frameworks */,
 				536187161523C39B000343E6 /* CoreLocation.framework in Frameworks */,
@@ -80,6 +86,7 @@
 		536186EC1523B694000343E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5339EC3815266B1D0022AC65 /* AVFoundation.framework */,
 				537D86D515252A5B0040A138 /* QuartzCore.framework */,
 				537D86CF152526670040A138 /* MapKit.framework */,
 				536187151523C39B000343E6 /* CoreLocation.framework */,
@@ -101,6 +108,8 @@
 				536187111523C1DD000343E6 /* RVMainViewController.m */,
 				53D6E82315255F900096B4A2 /* RVMainView.h */,
 				53D6E82415255F900096B4A2 /* RVMainView.m */,
+				5339EC3415266AE40022AC65 /* RVCameraView.h */,
+				5339EC3515266AE40022AC65 /* RVCameraView.m */,
 				536186F41523B694000343E6 /* Supporting Files */,
 			);
 			path = Reveal;
@@ -185,6 +194,7 @@
 				536187131523C1DD000343E6 /* RVMainViewController.m in Sources */,
 				536187191523C531000343E6 /* RVLocationManager.m in Sources */,
 				53D6E82515255F900096B4A2 /* RVMainView.m in Sources */,
+				5339EC3615266AE40022AC65 /* RVCameraView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
