@@ -68,25 +68,15 @@
 
 - (void)updatedLocation:(NSNotification*)notification
 {
-  NSLog(@"RVMainViewController updatedLocation");
-  
-  CLLocationCoordinate2D location = ((RVLocationManager*) notification.object).current_location;
-  
-  NSLog(@"%lf, %lf", location.latitude, location.longitude);
-  
+  CLLocationCoordinate2D location = ((RVLocationManager*) notification.object).current_location;  
   // Center map on user's location
   [self.map_display setRegion:MKCoordinateRegionMake(location, MKCoordinateSpanMake(0.002, 0.002)) animated:YES];
 }
 
 - (void)updatedHeading:(NSNotification*)notification
 {
-  NSLog(@"RVMainViewController updatedHeading");
-  
   CLLocationDirection heading = ((RVLocationManager*) notification.object).current_heading;
-  
   [self.compass_display setTitle:[NSString stringWithFormat:@"%.01lf", heading] forSegmentAtIndex:0];
-  
-  NSLog(@"%.02lf", heading);
 }
 
 @end
