@@ -119,7 +119,7 @@
   else if (_current_pitch < -M_PI)
     _current_pitch += 2 * M_PI;
   
-  NSLog(@"RVLocationManager : Pitch = %.02lf", self.current_pitch * 180.0 / M_PI);
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"PitchUpdated" object:self];
 }
 
 @end
