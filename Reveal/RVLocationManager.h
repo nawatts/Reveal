@@ -13,6 +13,9 @@
 @property (assign, nonatomic, readonly) CLLocationCoordinate2D current_location;
 @property (assign, nonatomic, readonly) CLLocationDirection current_heading;
 
+// Altitude of phone in meters
+@property (assign, nonatomic, readonly) CLLocationDistance current_altitude;
+
 // Pitch of phone in radians (-PI,PI)
 @property (assign, nonatomic, readonly) double current_pitch;
 

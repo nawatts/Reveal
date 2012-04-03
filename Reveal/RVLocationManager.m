@@ -17,6 +17,7 @@
 
 @synthesize location_manager = _location_manager;
 @synthesize current_location = _current_location;
+@synthesize current_altitude = _current_altitude;
 @synthesize current_heading = _current_heading;
 @synthesize accelerometer = _accelerometer;
 @synthesize current_pitch = _current_pitch;
@@ -63,6 +64,8 @@
 {
   NSLog(@"RVLocationManager : Moved to %lf, %lf", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
   _current_location = newLocation.coordinate;
+  _current_altitude = newLocation.altitude;
+  NSLog(@"Altitude: %lf",self.current_altitude);
   [[NSNotificationCenter defaultCenter] postNotificationName:@"LocationUpdated" object:self];
 }
 
