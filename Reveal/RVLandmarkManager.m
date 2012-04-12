@@ -37,7 +37,7 @@
   return self;
 }
 
-double distance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
+double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
 {
   // http://www.movable-type.co.uk/scripts/latlong.html
   int earth_radius = 6371000; // meters
@@ -70,7 +70,7 @@ double distance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
     last_update_location = current_location;
     [self updateLandmarkCache];
     initialized = YES;
-  } else if ( distance(current_location, last_update_location) > self.visible_distance * kVisibleDistanceUpdateFraction ) {
+  } else if ( haversineDistance(current_location, last_update_location) > self.visible_distance * kVisibleDistanceUpdateFraction ) {
     [self updateLandmarkCache];
     last_update_location = current_location;
   }
