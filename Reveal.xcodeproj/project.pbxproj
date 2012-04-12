@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5326E0F315370C6900156F25 /* RVLandmarkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5326E0F215370C6900156F25 /* RVLandmarkManager.m */; };
 		5339EC3615266AE40022AC65 /* RVCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339EC3515266AE40022AC65 /* RVCameraView.m */; };
 		5339EC3915266B1D0022AC65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5339EC3815266B1D0022AC65 /* AVFoundation.framework */; };
 		536186EE1523B694000343E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536186ED1523B694000343E6 /* UIKit.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5326E0F115370C6900156F25 /* RVLandmarkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVLandmarkManager.h; sourceTree = "<group>"; };
+		5326E0F215370C6900156F25 /* RVLandmarkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVLandmarkManager.m; sourceTree = "<group>"; };
 		5339EC3415266AE40022AC65 /* RVCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVCameraView.h; sourceTree = "<group>"; };
 		5339EC3515266AE40022AC65 /* RVCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVCameraView.m; sourceTree = "<group>"; };
 		5339EC3815266B1D0022AC65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +107,8 @@
 				536186FD1523B694000343E6 /* RVAppDelegate.m */,
 				536187171523C531000343E6 /* RVLocationManager.h */,
 				536187181523C531000343E6 /* RVLocationManager.m */,
+				5326E0F115370C6900156F25 /* RVLandmarkManager.h */,
+				5326E0F215370C6900156F25 /* RVLandmarkManager.m */,
 				536187101523C1DD000343E6 /* RVMainViewController.h */,
 				536187111523C1DD000343E6 /* RVMainViewController.m */,
 				53D6E82315255F900096B4A2 /* RVMainView.h */,
@@ -195,6 +200,7 @@
 				536187191523C531000343E6 /* RVLocationManager.m in Sources */,
 				53D6E82515255F900096B4A2 /* RVMainView.m in Sources */,
 				5339EC3615266AE40022AC65 /* RVCameraView.m in Sources */,
+				5326E0F315370C6900156F25 /* RVLandmarkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

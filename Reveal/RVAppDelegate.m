@@ -8,11 +8,13 @@
 #import "RVAppDelegate.h"
 #import "RVMainViewController.h"
 #import "RVLocationManager.h"
+#import "RVLandmarkManager.h"
 
 @interface RVAppDelegate()
 
 @property (strong, nonatomic) RVMainViewController* main_view_controller;
-@property (strong, nonatomic) RVLocationManager* location_manager; 
+@property (strong, nonatomic) RVLocationManager* location_manager;
+@property (strong, nonatomic) RVLandmarkManager* landmark_manager;
 
 @end
 
@@ -21,11 +23,13 @@
 @synthesize window = _window;
 @synthesize main_view_controller = _main_view_controller;
 @synthesize location_manager = _location_manager;
+@synthesize landmark_manager = _landmark_manager;
 
 - (void)dealloc
 {
   [_main_view_controller release];
   [_location_manager release];
+  [_landmark_manager release];
   [_window release];
   [super dealloc];
 }
@@ -42,6 +46,8 @@
   [self.window makeKeyAndVisible];
   
   self.location_manager = [[RVLocationManager alloc] init];
+  
+  self.landmark_manager = [[RVLandmarkManager alloc] init];
   
   /*CGFloat center_x = self.main_view_controller.view.frame.size.width / 2;
   CGFloat center_y = self.main_view_controller.view.frame.size.height / 2;
