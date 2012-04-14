@@ -8,7 +8,7 @@
 #import "RVLandmarkManager.h"
 #import "RVLocationManager.h"
 
-#define kDefaultVisibleDistance 1000
+#define kDefaultVisibleDistance 200
 #define kVisibleDistanceUpdateFraction 0.25
 
 #define kLandmarkJSONSource @"http://localhost/~nwatts/reveal-editor/landmarks.php"
@@ -69,7 +69,9 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
  */
 - (void)updateLandmarkCache:(CLLocationCoordinate2D)location
 {
-  [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kLandmarkJSONSource]] 
+  NSString *query = [NSString stringWithFormat:@"?lat=%lf&lng=%lf&d=%d&exclude=%@", location.latitude, location.longitude, self.visible_distance, [[self.landmark_cache allKeys] componentsJoinedByString:@","]];
+  NSURL *landmark_url = [NSURL URLWithString:[kLandmarkJSONSource stringByAppendingString:query]];
+  [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:landmark_url]
                                      queue:[[[NSOperationQueue alloc] init] autorelease]
                          completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                            if ( ! error ) {
