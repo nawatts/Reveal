@@ -17,12 +17,14 @@
 
 @interface RVLandmarkManager ()
 @property (strong, nonatomic) NSMutableDictionary* landmark_cache;
+@property (assign, nonatomic) CLLocationCoordinate2D last_update_location;
 @end
 
 @implementation RVLandmarkManager
 
 @synthesize visible_distance = _visible_distance;
 @synthesize landmark_cache = _landmark_cache;
+@synthesize last_update_location = _last_update_location;
 
 - (void)dealloc
 {
@@ -65,7 +67,7 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
  * Display an alert if there is an error retrieving or parsing the data
  * If no error, call didFetchLandmarkData with retrieved data
  */
-- (void)updateLandmarkCache
+- (void)updateLandmarkCache:(CLLocationCoordinate2D)location
 {
   [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kLandmarkJSONSource]] 
                                      queue:[[[NSOperationQueue alloc] init] autorelease]
@@ -83,6 +85,7 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
                              [alert show];
                            }
                          }];
+  self.last_update_location = location;
 }
 
 #pragma mark - Notification Observers
@@ -90,18 +93,15 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
 - (void)didUpdateLocation:(NSNotification*)notification
 {
   static BOOL initialized = NO;
-  static CLLocationCoordinate2D last_update_location;
   
   CLLocationCoordinate2D current_location = ((RVLocationManager*) notification.object).current_location;
   
   // Only update landmarks on the first location update or if the device has moved a certain distance since the last update
   if ( initialized == NO ) {
-    last_update_location = current_location;
-    [self updateLandmarkCache];
+    [self updateLandmarkCache:current_location];
     initialized = YES;
-  } else if ( haversineDistance(current_location, last_update_location) > self.visible_distance * kVisibleDistanceUpdateFraction ) {
-    [self updateLandmarkCache];
-    last_update_location = current_location;
+  } else if ( haversineDistance(current_location, self.last_update_location) > self.visible_distance * kVisibleDistanceUpdateFraction ) {
+    [self updateLandmarkCache:current_location];
   }
 }
 
