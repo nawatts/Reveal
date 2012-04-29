@@ -6,7 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RVCameraView.h"
 
 @interface RVLandmarkManager : NSObject
 @property NSInteger visible_distance;
+@property (strong, nonatomic) RVCameraView* camera_view;
 @end

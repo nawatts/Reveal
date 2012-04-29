@@ -21,6 +21,7 @@
 		536187191523C531000343E6 /* RVLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 536187181523C531000343E6 /* RVLocationManager.m */; };
 		537D86D0152526670040A138 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D86CF152526670040A138 /* MapKit.framework */; };
 		537D86D615252A5B0040A138 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537D86D515252A5B0040A138 /* QuartzCore.framework */; };
+		539C4A68154DB9BD00BC9D9A /* RVLandmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C4A67154DB9BD00BC9D9A /* RVLandmark.m */; };
 		53D6E82515255F900096B4A2 /* RVMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D6E82415255F900096B4A2 /* RVMainView.m */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,8 @@
 		536187181523C531000343E6 /* RVLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVLocationManager.m; sourceTree = "<group>"; };
 		537D86CF152526670040A138 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		537D86D515252A5B0040A138 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		539C4A66154DB9BD00BC9D9A /* RVLandmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVLandmark.h; sourceTree = "<group>"; };
+		539C4A67154DB9BD00BC9D9A /* RVLandmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVLandmark.m; sourceTree = "<group>"; };
 		53D6E82315255F900096B4A2 /* RVMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVMainView.h; sourceTree = "<group>"; };
 		53D6E82415255F900096B4A2 /* RVMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVMainView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +112,8 @@
 				536187181523C531000343E6 /* RVLocationManager.m */,
 				5326E0F115370C6900156F25 /* RVLandmarkManager.h */,
 				5326E0F215370C6900156F25 /* RVLandmarkManager.m */,
+				539C4A66154DB9BD00BC9D9A /* RVLandmark.h */,
+				539C4A67154DB9BD00BC9D9A /* RVLandmark.m */,
 				536187101523C1DD000343E6 /* RVMainViewController.h */,
 				536187111523C1DD000343E6 /* RVMainViewController.m */,
 				53D6E82315255F900096B4A2 /* RVMainView.h */,
@@ -201,6 +206,7 @@
 				53D6E82515255F900096B4A2 /* RVMainView.m in Sources */,
 				5339EC3615266AE40022AC65 /* RVCameraView.m in Sources */,
 				5326E0F315370C6900156F25 /* RVLandmarkManager.m in Sources */,
+				539C4A68154DB9BD00BC9D9A /* RVLandmark.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

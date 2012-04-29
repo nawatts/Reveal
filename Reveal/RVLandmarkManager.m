@@ -7,6 +7,7 @@
 
 #import "RVLandmarkManager.h"
 #import "RVLocationManager.h"
+#import "RVLandmark.h"
 
 #define kDefaultVisibleDistance 200
 #define kVisibleDistanceUpdateFraction 0.25
@@ -26,9 +27,12 @@
 @synthesize landmark_cache = _landmark_cache;
 @synthesize last_update_location = _last_update_location;
 
+@synthesize camera_view = _camera_view;
+
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LocationUpdated" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"HeadingUpdated" object:nil];
   [super dealloc];
 }
 
@@ -38,6 +42,7 @@
   if (self) {
     self.visible_distance = kDefaultVisibleDistance;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateLocation:) name:@"LocationUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateHeading:) name:@"HeadingUpdated" object:nil];
   }
   return self;
 }
@@ -58,9 +63,29 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
 
 #pragma mark - Update landmarks methods
 
-- (void)didFetchLandmarkData:(NSDictionary*)landmark_data
+- (void)didFetchLandmarkData:(NSDictionary*)landmark_data atLocation:(CLLocationCoordinate2D)location
 {
-  NSLog(@"%@", landmark_data);
+  NSLog(@"Fetched landmark data");
+  
+  // Remove landmarks that are no longer within range
+  for ( NSNumber* key in [self.landmark_cache allKeys] ) {
+    RVLandmark* landmark = [self.landmark_cache objectForKey:key];
+    if ( haversineDistance(location, landmark.centerPoint) > self.visible_distance ) {
+      [self.landmark_cache removeObjectForKey:key];
+    }
+  }
+  
+  // Add landmarks from fetched data
+  for ( NSNumber* key in [landmark_data allKeys] ) {
+    RVLandmark* new_landmark = [[RVLandmark alloc] initFromJSON:[landmark_data objectForKey:key]];
+    [self.landmark_cache setObject:new_landmark forKey:key];
+    [new_landmark release];
+  }
+}
+
+- (void)updateLandmarksWithLocation:(RVLocationManager*)location forView:(RVCameraView*)view
+{
+  NSLog(@"Update landmarks");
 }
 
 - (void)showError:(NSError*)error
@@ -83,7 +108,7 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
                            if ( ! error ) {
                              NSDictionary* landmark_json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                              if ( ! error ) {
-                               [self didFetchLandmarkData:landmark_json];
+                               [self didFetchLandmarkData:landmark_json atLocation:location];
                              } else {
                                NSLog(@"Error: %@", error.description);
                                dispatch_async(dispatch_get_main_queue(), ^{
@@ -115,6 +140,11 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
   } else if ( haversineDistance(current_location, self.last_update_location) > self.visible_distance * kVisibleDistanceUpdateFraction ) {
     [self updateLandmarkCache:current_location];
   }
+}
+
+- (void)didUpdateHeading:(NSNotification*)notification
+{
+  [self updateLandmarksWithLocation:((RVLocationManager*) notification.object) forView:self.camera_view];
 }
 
 @end

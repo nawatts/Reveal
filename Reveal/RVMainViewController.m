@@ -14,6 +14,8 @@
 
 @implementation RVMainViewController
 
+@synthesize landmark_manager = _landmark_manager;
+
 - (void)dealloc
 {
   [super dealloc];
@@ -38,6 +40,11 @@
 {
   [super viewDidUnload];
   // Release any retained subviews of the main view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  self.landmark_manager.camera_view = ((RVMainView*) self.view).camera_display;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
