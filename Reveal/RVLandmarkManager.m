@@ -63,6 +63,12 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
   NSLog(@"%@", landmark_data);
 }
 
+- (void)showError:(NSError*)error
+{
+  UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[@"Failed to update landmarks\n" stringByAppendingString:error.localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+  [alert show];
+}
+
 /* Asynchronously fetch landmark data from the JSON source specified in kLandmarkJSONSource
  * Display an alert if there is an error retrieving or parsing the data
  * If no error, call didFetchLandmarkData with retrieved data
@@ -79,12 +85,16 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
                              if ( ! error ) {
                                [self didFetchLandmarkData:landmark_json];
                              } else {
-                               UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
-                               [alert show];
+                               NSLog(@"Error: %@", error.description);
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                 [self showError:error];
+                               });
                              }
                            } else {
-                             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
-                             [alert show];
+                             NSLog(@"Error: %@", error.description);
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                               [self showError:error];
+                             });
                            }
                          }];
   self.last_update_location = location;
