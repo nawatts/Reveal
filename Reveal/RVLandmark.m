@@ -37,6 +37,7 @@
   if ( _nodes != NULL ) {
     free(_nodes);
   }
+  [_view release];
   [super dealloc];
 }
 
