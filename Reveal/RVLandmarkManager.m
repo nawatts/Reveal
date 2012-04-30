@@ -95,8 +95,6 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
 
 - (void)updateLandmarksWithLocation:(RVLocationManager*)location forView:(RVCameraView*)view
 {
-  NSLog(@"Update landmarks");
-  
   if ( [self.landmark_cache_lock tryLock] ) {
     
     int i = 0;
