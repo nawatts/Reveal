@@ -12,9 +12,11 @@
 
 - (id)initWithLandmark:(RVLandmark*)landmark
 {
-  self = [super init];
+  self = [super initWithItems:[NSArray arrayWithObject:landmark.name]];
   if ( self ) {
-    self.text = landmark.name;
+    self.userInteractionEnabled = NO;
+    self.segmentedControlStyle = UISegmentedControlStyleBar;
+    self.tintColor = [UIColor blackColor];
   }
   return self;
 }
@@ -26,14 +28,5 @@
   [self sizeToFit];
   [self setFrame:CGRectMake(position.x - self.frame.size.width / 2, position.y - self.frame.size.height / 2, self.frame.size.width, self.frame.size.height)];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

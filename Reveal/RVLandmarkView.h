@@ -9,7 +9,7 @@
 
 @class RVLandmark;
 
-@interface RVLandmarkView : UILabel
+@interface RVLandmarkView : UISegmentedControl
 
 - (id)initWithLandmark:(RVLandmark*)landmark;
 
