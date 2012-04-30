@@ -49,6 +49,8 @@
   
   self.landmark_manager = [[RVLandmarkManager alloc] init];
   
+  self.main_view_controller.landmark_manager = self.landmark_manager;
+  
   /*CGFloat center_x = self.main_view_controller.view.frame.size.width / 2;
   CGFloat center_y = self.main_view_controller.view.frame.size.height / 2;
   UIAlertView* alert = [[UIAlertView alloc] init];

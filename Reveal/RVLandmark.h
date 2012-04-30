@@ -7,13 +7,16 @@
 
 #import <Foundation/Foundation.h>
 #import "RVLocationManager.h"
+#import "RVLandmarkView.h"
 
 @interface RVLandmark : NSObject
 
-@property (copy, readonly) NSString* name;
-@property (copy, readonly) NSString* type;
+@property (assign, readonly) NSInteger uid;
+@property (copy, nonatomic) NSString* name;
+@property (copy, nonatomic) NSString* type;
+@property (strong) RVLandmarkView* view;
 
-- (id)initFromJSON:(NSDictionary*)data;
+- (id)initFromJSON:(NSDictionary*)data withId:(NSInteger)uid;
 
 - (CGRect)boundingBoxFromLocation:(RVLocationManager*)location;
 

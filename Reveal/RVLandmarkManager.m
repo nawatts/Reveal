@@ -12,13 +12,14 @@
 #define kDefaultVisibleDistance 200
 #define kVisibleDistanceUpdateFraction 0.25
 
-#define kLandmarkJSONSource @"http://localhost/~nwatts/reveal-editor/landmarks.php"
+#define kLandmarkJSONSource @"http://nawatts.com/reveal-editor/landmarks.php"
 
 #define DEG2RAD(angle) ((angle) / 180.0 * M_PI)
 
 @interface RVLandmarkManager ()
-@property (strong, nonatomic) NSMutableDictionary* landmark_cache;
+@property (strong, atomic) NSMutableDictionary* landmark_cache;
 @property (assign, nonatomic) CLLocationCoordinate2D last_update_location;
+@property (strong) NSLock* landmark_cache_lock;
 @end
 
 @implementation RVLandmarkManager
@@ -26,6 +27,7 @@
 @synthesize visible_distance = _visible_distance;
 @synthesize landmark_cache = _landmark_cache;
 @synthesize last_update_location = _last_update_location;
+@synthesize landmark_cache_lock = _landmark_cache_lock;
 
 @synthesize camera_view = _camera_view;
 
@@ -33,6 +35,8 @@
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LocationUpdated" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"HeadingUpdated" object:nil];
+  [_landmark_cache release];
+  [_landmark_cache_lock release];
   [super dealloc];
 }
 
@@ -41,6 +45,8 @@
   self = [super init];
   if (self) {
     self.visible_distance = kDefaultVisibleDistance;
+    self.landmark_cache_lock = [NSLock new];
+    self.landmark_cache = [[NSMutableDictionary alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateLocation:) name:@"LocationUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateHeading:) name:@"HeadingUpdated" object:nil];
   }
@@ -65,27 +71,53 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
 
 - (void)didFetchLandmarkData:(NSDictionary*)landmark_data atLocation:(CLLocationCoordinate2D)location
 {
-  NSLog(@"Fetched landmark data");
-  
+  [self.landmark_cache_lock lock];
   // Remove landmarks that are no longer within range
   for ( NSNumber* key in [self.landmark_cache allKeys] ) {
     RVLandmark* landmark = [self.landmark_cache objectForKey:key];
     if ( haversineDistance(location, landmark.centerPoint) > self.visible_distance ) {
+      //[landmark.view removeFromSuperview];
       [self.landmark_cache removeObjectForKey:key];
     }
   }
   
   // Add landmarks from fetched data
   for ( NSNumber* key in [landmark_data allKeys] ) {
-    RVLandmark* new_landmark = [[RVLandmark alloc] initFromJSON:[landmark_data objectForKey:key]];
+    RVLandmark* new_landmark = [[RVLandmark alloc] initFromJSON:[landmark_data objectForKey:key] withId:key.integerValue];
     [self.landmark_cache setObject:new_landmark forKey:key];
+    [self.camera_view addSubview:new_landmark.view];
+    [self.camera_view bringSubviewToFront:new_landmark.view];
+    NSLog(@"Added landmark: %@", new_landmark.name);
     [new_landmark release];
   }
+  [self.landmark_cache_lock unlock];
 }
 
 - (void)updateLandmarksWithLocation:(RVLocationManager*)location forView:(RVCameraView*)view
 {
   NSLog(@"Update landmarks");
+  
+  if ( [self.landmark_cache_lock tryLock] ) {
+    
+    int i = 0;
+    for ( RVLandmark* landmark in self.landmark_cache.allValues ) {
+      CGRect landmark_bounding_box = [landmark boundingBoxFromLocation:location];
+      // Convert headings in landmarkViewBounds to pixels
+      
+      double fov;
+      if ( UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ) {
+        fov = 39;
+      } else {
+        fov = 48;
+      }
+      
+      [landmark.view setPosition:CGPointMake(view.bounds.size.width / 2 + landmark_bounding_box.origin.x * view.bounds.size.width / fov, 10 + 20 * i)];
+      
+      i++;
+    }
+      
+    [self.landmark_cache_lock unlock];
+  }
 }
 
 - (void)showError:(NSError*)error
@@ -144,7 +176,8 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
 
 - (void)didUpdateHeading:(NSNotification*)notification
 {
-  [self updateLandmarksWithLocation:((RVLocationManager*) notification.object) forView:self.camera_view];
+  if ( self.camera_view )
+    [self updateLandmarksWithLocation:((RVLocationManager*) notification.object) forView:self.camera_view];
 }
 
 @end

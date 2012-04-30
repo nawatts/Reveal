@@ -7,6 +7,8 @@
 
 #import "RVLandmark.h"
 
+#define RAD2DEG(angle) ((angle) / M_PI * 180.0)
+
 @interface RVLandmark()
 
 @property (assign, nonatomic) CLLocationCoordinate2D* nodes;
@@ -19,8 +21,10 @@
 
 @implementation RVLandmark
 
+@synthesize uid = _uid;
 @synthesize name = _name;
 @synthesize type = _type;
+@synthesize view = _view;
 
 @synthesize nodes = _nodes;
 @synthesize num_nodes = _num_nodes;
@@ -36,12 +40,13 @@
   [super dealloc];
 }
 
-- (id)initFromJSON:(NSDictionary *)data
+- (id)initFromJSON:(NSDictionary *)data withId:(NSInteger)uid;
 {
   self = [super init];
   if ( self ) {
-    _name = [data objectForKey:@"name"];
-    _type = [data objectForKey:@"type"];
+    _uid = uid;
+    self.name = [data objectForKey:@"name"];
+    self.type = [data objectForKey:@"type"];
     self.elevation = ((NSNumber*) [data objectForKey:@"ele"]).doubleValue;
     self.height = ((NSNumber*) [data objectForKey:@"hgt"]).doubleValue;
     
@@ -59,13 +64,42 @@
         i++;
       }
     }
+    
+    self.view = [[[RVLandmarkView alloc] initWithLandmark:self] autorelease];
   }
   return self;
 }
 
+- (CLLocationDirection)headingFromPoint:(CLLocationCoordinate2D)point1 toPoint:(CLLocationCoordinate2D)point2
+{  
+  double heading = RAD2DEG(atan2(point2.longitude - point1.longitude, point2.latitude - point1.latitude));
+  if ( heading < 0 ) {
+    heading += 360;
+  }
+  return heading;
+}
+
 - (CGRect)boundingBoxFromLocation:(RVLocationManager *)location
 {
-  return CGRectMake(0,0,0,0);
+  double sum = 0;
+  
+  CLLocationDirection min_heading = 360;
+  CLLocationDirection max_heading = -360;
+  for ( int i = 0; i < self.num_nodes; i++ ) {
+    CLLocationDirection heading_to_node = [self headingFromPoint:location.current_location toPoint:self.nodes[i]];
+    sum += heading_to_node;
+    CLLocationDirection relative_heading = heading_to_node - location.current_heading;
+    if ( relative_heading > 180 ) {
+      relative_heading -= 360;
+    } else if ( relative_heading < -180 ) {
+      relative_heading += 360;
+    }
+    
+    min_heading = MIN(min_heading, relative_heading);
+    max_heading = MAX(max_heading, relative_heading);
+  }
+  
+  return CGRectMake(min_heading, 0, max_heading - min_heading, 0);
 }
 
 /* Calculate average of all nodes
