@@ -76,7 +76,7 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
   for ( NSNumber* key in [self.landmark_cache allKeys] ) {
     RVLandmark* landmark = [self.landmark_cache objectForKey:key];
     if ( haversineDistance(location, landmark.centerPoint) > self.visible_distance ) {
-      //[landmark.view removeFromSuperview];
+      [landmark.view removeFromSuperview];
       [self.landmark_cache removeObjectForKey:key];
     }
   }
