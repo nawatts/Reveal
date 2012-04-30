@@ -15,6 +15,7 @@
 @property (strong, nonatomic) RVMainViewController* main_view_controller;
 @property (strong, nonatomic) RVLocationManager* location_manager;
 @property (strong, nonatomic) RVLandmarkManager* landmark_manager;
+@property (strong, nonatomic) UIAlertView* loading_alert;
 
 @end
 
@@ -24,9 +25,11 @@
 @synthesize main_view_controller = _main_view_controller;
 @synthesize location_manager = _location_manager;
 @synthesize landmark_manager = _landmark_manager;
+@synthesize loading_alert = _loading_alert;
 
 - (void)dealloc
 {
+  [_loading_alert release];
   [_main_view_controller release];
   [_location_manager release];
   [_landmark_manager release];
@@ -51,19 +54,7 @@
   
   self.main_view_controller.landmark_manager = self.landmark_manager;
   
-  /*CGFloat center_x = self.main_view_controller.view.frame.size.width / 2;
-  CGFloat center_y = self.main_view_controller.view.frame.size.height / 2;
-  UIAlertView* alert = [[UIAlertView alloc] init];
-  UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-  [alert show];
-  alert.frame = CGRectMake(center_x - 90, center_y - 90, 180, 180);
-  NSLog(@"%f, %f", alert.frame.size.width, alert.frame.size.height);
-    [alert addSubview:indicator];
-    [indicator startAnimating];
-  indicator 
-  indicator.frame = CGRectMake(alert.frame.size.width/2 - indicator.frame.size.width/2,);
-  [indicator release];
-  [alert release];*/
+  [self showLoadingAlert];
   
   return YES;
 }
@@ -93,6 +84,43 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)showLoadingAlert
+{
+  CGFloat center_x = self.main_view_controller.view.frame.size.width / 2;
+  CGFloat center_y = self.main_view_controller.view.frame.size.height / 2;
+  self.loading_alert = [[UIAlertView alloc] init];
+  
+  UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  [self.loading_alert show];
+  self.loading_alert.frame = CGRectMake(center_x - 90, center_y - 90, 180, 180);
+  [self.loading_alert addSubview:indicator];
+  [indicator setColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.3]];
+  [indicator startAnimating];
+  [indicator setTransform:CGAffineTransformMakeScale(2, 2)];
+  indicator.frame = CGRectMake(self.loading_alert.bounds.size.width/2 - indicator.bounds.size.width/2, self.loading_alert.bounds.size.height/2 - indicator.bounds.size.height/2, indicator.bounds.size.width, indicator.bounds.size.height);
+  
+  UILabel* message = [[UILabel alloc] init];
+  message.text = @"loading";
+  message.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+  message.textColor = [UIColor whiteColor];
+  [self.loading_alert addSubview:message];
+  [message sizeToFit];
+  [message setFrame: CGRectMake(self.loading_alert.bounds.size.width/2 - message.bounds.size.width/2, self.loading_alert.bounds.size.height/2 - message.bounds.size.height/2, message.bounds.size.width, message.bounds.size.height)];
+  [self.loading_alert bringSubviewToFront:message];
+  
+  [indicator release];
+  [self.loading_alert release];
+  [message release];
+}
+
+- (void)closeLoadingAlert
+{
+  if ( self.loading_alert != nil ) {
+    [self.loading_alert dismissWithClickedButtonIndex:0 animated:YES];
+    self.loading_alert = nil;
+  }
 }
 
 @end

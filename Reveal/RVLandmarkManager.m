@@ -8,6 +8,7 @@
 #import "RVLandmarkManager.h"
 #import "RVLocationManager.h"
 #import "RVLandmark.h"
+#import "RVAppDelegate.h"
 
 #define kDefaultVisibleDistance 200
 #define kVisibleDistanceUpdateFraction 0.25
@@ -91,6 +92,9 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
     [new_landmark release];
   }
   [self.landmark_cache_lock unlock];
+  
+  RVAppDelegate* appDelegate = (RVAppDelegate*) [UIApplication sharedApplication].delegate;
+  [appDelegate closeLoadingAlert];
 }
 
 - (void)updateLandmarksWithLocation:(RVLocationManager*)location forView:(RVCameraView*)view
