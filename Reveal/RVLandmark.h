@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "RVLocationManager.h"
 #import "RVLandmarkView.h"
+#import "RVCameraView.h"
 
 @interface RVLandmark : NSObject
 
@@ -18,7 +19,8 @@
 
 - (id)initFromJSON:(NSDictionary*)data withId:(NSInteger)uid;
 
-- (CGRect)boundingBoxFromLocation:(RVLocationManager*)location;
+- (CGRect)boundingBoxFromLocation:(RVLocationManager*)location fov:(double)fov view:(RVCameraView*)view;
+//- (CGRect)boundingBoxFromLocation:(RVLocationManager*)location;
 
 - (CLLocationCoordinate2D)centerPoint;
 

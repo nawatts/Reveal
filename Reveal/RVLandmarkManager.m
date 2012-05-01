@@ -103,9 +103,7 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
     
     int i = 0;
     for ( RVLandmark* landmark in self.landmark_cache.allValues ) {
-      CGRect landmark_bounding_box = [landmark boundingBoxFromLocation:location];
-      // Convert headings in landmarkViewBounds to pixels
-      
+          
       double fov;
       if ( UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ) {
         fov = 39;
@@ -115,20 +113,16 @@ double haversineDistance(CLLocationCoordinate2D c1, CLLocationCoordinate2D c2)
       
       [landmark.view sizeToFit];
       
+      CGRect landmark_bounding_box = [landmark boundingBoxFromLocation:location fov:fov view:view];
+      
       // Scale views based on distance from phone
       double d = haversineDistance(location.current_location, landmark.centerPoint);
       double s = 1.75 - d / self.visible_distance;
       [landmark.view setTransform:CGAffineTransformMakeScale(s, s)];
       
-      // If part of the landmark is visible, center the view in the visible bounding box, not the full bounding box
-      landmark_bounding_box.origin.x *= view.bounds.size.width / fov;
-      landmark_bounding_box.origin.y = 0;
-      landmark_bounding_box.size.width *= view.bounds.size.width / fov;
-      landmark_bounding_box.size.height = view.bounds.size.height;
-      
       CGRect visible_box = CGRectIntersection(landmark_bounding_box, view.bounds);
-      if ( CGRectIsEmpty(visible_box) ) {
-        [landmark.view setPosition:CGPointMake(view.bounds.size.width / 2 + landmark_bounding_box.origin.x, 10 + 20 * i)];
+      if ( CGRectIsNull(visible_box) ) {
+        [landmark.view setPosition:CGPointMake(landmark_bounding_box.origin.x, 10 + 20 * i)];
       } else {
         [landmark.view setPosition:CGPointMake(visible_box.origin.x + visible_box.size.width / 2, 10 + 20 * i)];
       }
